@@ -35,11 +35,13 @@ export default {
       "group relative inline-flex items-center min-w-0 data-[state=inactive]:text-muted hover:data-[state=inactive]:not-disabled:text-default font-medium rounded-md disabled:cursor-not-allowed disabled:opacity-75",
       "transition-colors"
     ],
-    "content": "focus:outline-none w-full",
     "leadingIcon": "shrink-0",
     "leadingAvatar": "shrink-0",
     "leadingAvatarSize": "",
-    "label": "truncate"
+    "label": "truncate",
+    "trailingBadge": "shrink-0",
+    "trailingBadgeSize": "sm",
+    "content": "focus:outline-none w-full"
   },
   "variants": {
     "color": {

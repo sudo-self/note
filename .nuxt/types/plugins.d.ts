@@ -6,31 +6,37 @@ type Decorate<T extends Record<string, any>> = { [K in keyof T as K extends stri
 type InjectionType<A extends Plugin> = A extends {default: Plugin<infer T>} ? Decorate<T> : unknown
 
 type NuxtAppInjections = 
-  InjectionType<typeof import("../../node_modules/.pnpm/@pinia+nuxt@0.11.1_magicast@0.3.5_pinia@3.0.3_typescript@5.8.3_vue@3.5.16_typescript@5.8.3__/node_modules/@pinia/nuxt/dist/runtime/payload-plugin.js")> &
-  InjectionType<typeof import("../../node_modules/.pnpm/@pinia+colada-nuxt@0.2.1_@pinia+colada@0.17.1_pinia@3.0.3_typescript@5.8.3_vue@3.5.16_typescript@5.8.3____magicast@0.3.5/node_modules/@pinia/colada-nuxt/dist/runtime/payload-plugin.js")> &
-  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.17.5_@parcel+watcher@2.4.1_@types+node@22.1.0_db0@0.3.2_drizzle-orm@0.44.2_@clou_27b39a761d29105b1fed7f90fdbccc63/node_modules/nuxt/dist/app/plugins/revive-payload.client.js")> &
-  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.17.5_@parcel+watcher@2.4.1_@types+node@22.1.0_db0@0.3.2_drizzle-orm@0.44.2_@clou_27b39a761d29105b1fed7f90fdbccc63/node_modules/nuxt/dist/head/runtime/plugins/unhead.js")> &
-  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.17.5_@parcel+watcher@2.4.1_@types+node@22.1.0_db0@0.3.2_drizzle-orm@0.44.2_@clou_27b39a761d29105b1fed7f90fdbccc63/node_modules/nuxt/dist/pages/runtime/plugins/router.js")> &
-  InjectionType<typeof import("../../node_modules/.pnpm/nuxt-auth-utils@0.5.20_magicast@0.3.5/node_modules/nuxt-auth-utils/dist/runtime/app/plugins/session.server.js")> &
-  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.17.5_@parcel+watcher@2.4.1_@types+node@22.1.0_db0@0.3.2_drizzle-orm@0.44.2_@clou_27b39a761d29105b1fed7f90fdbccc63/node_modules/nuxt/dist/app/plugins/payload.client.js")> &
-  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.17.5_@parcel+watcher@2.4.1_@types+node@22.1.0_db0@0.3.2_drizzle-orm@0.44.2_@clou_27b39a761d29105b1fed7f90fdbccc63/node_modules/nuxt/dist/app/plugins/navigation-repaint.client.js")> &
-  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.17.5_@parcel+watcher@2.4.1_@types+node@22.1.0_db0@0.3.2_drizzle-orm@0.44.2_@clou_27b39a761d29105b1fed7f90fdbccc63/node_modules/nuxt/dist/app/plugins/check-outdated-build.client.js")> &
-  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.17.5_@parcel+watcher@2.4.1_@types+node@22.1.0_db0@0.3.2_drizzle-orm@0.44.2_@clou_27b39a761d29105b1fed7f90fdbccc63/node_modules/nuxt/dist/app/plugins/revive-payload.server.js")> &
-  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.17.5_@parcel+watcher@2.4.1_@types+node@22.1.0_db0@0.3.2_drizzle-orm@0.44.2_@clou_27b39a761d29105b1fed7f90fdbccc63/node_modules/nuxt/dist/app/plugins/chunk-reload.client.js")> &
-  InjectionType<typeof import("../../node_modules/.pnpm/@pinia+nuxt@0.11.1_magicast@0.3.5_pinia@3.0.3_typescript@5.8.3_vue@3.5.16_typescript@5.8.3__/node_modules/@pinia/nuxt/dist/runtime/plugin.vue3.js")> &
-  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.17.5_@parcel+watcher@2.4.1_@types+node@22.1.0_db0@0.3.2_drizzle-orm@0.44.2_@clou_27b39a761d29105b1fed7f90fdbccc63/node_modules/nuxt/dist/pages/runtime/plugins/prefetch.client.js")> &
-  InjectionType<typeof import("../../node_modules/.pnpm/@pinia+colada-nuxt@0.2.1_@pinia+colada@0.17.1_pinia@3.0.3_typescript@5.8.3_vue@3.5.16_typescript@5.8.3____magicast@0.3.5/node_modules/@pinia/colada-nuxt/dist/runtime/plugin.js")> &
-  InjectionType<typeof import("../../node_modules/.pnpm/nuxt-auth-utils@0.5.20_magicast@0.3.5/node_modules/nuxt-auth-utils/dist/runtime/app/plugins/session.client.js")> &
-  InjectionType<typeof import("../../node_modules/.pnpm/@nuxt+ui@3.1.3_@babel+parser@7.27.5_change-case@5.4.4_db0@0.3.2_drizzle-orm@0.44.2_@clo_194229b6ea7292ce5fb9a92505112162/node_modules/@nuxt/ui/dist/runtime/plugins/colors.js")> &
+  InjectionType<typeof import("../../node_modules/.pnpm/@pinia+nuxt@0.11.2_magicast@0.3.5_pinia@3.0.3_typescript@5.9.2_vue@3.5.21_typescript@5.9.2__/node_modules/@pinia/nuxt/dist/runtime/payload-plugin.js")> &
+  InjectionType<typeof import("../../node_modules/.pnpm/@pinia+colada-nuxt@0.2.2_@pinia+colada@0.17.3_pinia@3.0.3_typescript@5.9.2_vue@3.5.21_t_13f6e6564d55f5174864bcb039cdcf7e/node_modules/@pinia/colada-nuxt/dist/runtime/payload-plugin.js")> &
+  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@4.1.0_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.21_db0@0.3.2_drizzle-orm@0.44.2__b637849a2d9c17a2791e03a42783086c/node_modules/nuxt/dist/app/plugins/revive-payload.client.js")> &
+  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@4.1.0_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.21_db0@0.3.2_drizzle-orm@0.44.2__b637849a2d9c17a2791e03a42783086c/node_modules/nuxt/dist/head/runtime/plugins/unhead.js")> &
+  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@4.1.0_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.21_db0@0.3.2_drizzle-orm@0.44.2__b637849a2d9c17a2791e03a42783086c/node_modules/nuxt/dist/pages/runtime/plugins/router.js")> &
+  InjectionType<typeof import("../../node_modules/.pnpm/nuxt-auth-utils@0.5.24_magicast@0.3.5/node_modules/nuxt-auth-utils/dist/runtime/app/plugins/session.server.js")> &
+  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@4.1.0_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.21_db0@0.3.2_drizzle-orm@0.44.2__b637849a2d9c17a2791e03a42783086c/node_modules/nuxt/dist/app/plugins/browser-devtools-timing.client.js")> &
+  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@4.1.0_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.21_db0@0.3.2_drizzle-orm@0.44.2__b637849a2d9c17a2791e03a42783086c/node_modules/nuxt/dist/app/plugins/navigation-repaint.client.js")> &
+  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@4.1.0_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.21_db0@0.3.2_drizzle-orm@0.44.2__b637849a2d9c17a2791e03a42783086c/node_modules/nuxt/dist/app/plugins/check-outdated-build.client.js")> &
+  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@4.1.0_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.21_db0@0.3.2_drizzle-orm@0.44.2__b637849a2d9c17a2791e03a42783086c/node_modules/nuxt/dist/app/plugins/revive-payload.server.js")> &
+  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@4.1.0_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.21_db0@0.3.2_drizzle-orm@0.44.2__b637849a2d9c17a2791e03a42783086c/node_modules/nuxt/dist/app/plugins/chunk-reload.client.js")> &
+  InjectionType<typeof import("../../node_modules/.pnpm/@pinia+nuxt@0.11.2_magicast@0.3.5_pinia@3.0.3_typescript@5.9.2_vue@3.5.21_typescript@5.9.2__/node_modules/@pinia/nuxt/dist/runtime/plugin.vue3.js")> &
+  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@4.1.0_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.21_db0@0.3.2_drizzle-orm@0.44.2__b637849a2d9c17a2791e03a42783086c/node_modules/nuxt/dist/pages/runtime/plugins/prefetch.client.js")> &
+  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@4.1.0_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.21_db0@0.3.2_drizzle-orm@0.44.2__b637849a2d9c17a2791e03a42783086c/node_modules/nuxt/dist/pages/runtime/plugins/check-if-page-unused.js")> &
+  InjectionType<typeof import("../../node_modules/.pnpm/@nuxt+devtools@2.6.3_vite@7.1.4_jiti@2.5.1_lightningcss@1.30.1_terser@5.44.0_yaml@2.8.1__vue@3.5.21_typescript@5.9.2_/node_modules/@nuxt/devtools/dist/runtime/plugins/devtools.server.js")> &
+  InjectionType<typeof import("../../node_modules/.pnpm/@nuxt+devtools@2.6.3_vite@7.1.4_jiti@2.5.1_lightningcss@1.30.1_terser@5.44.0_yaml@2.8.1__vue@3.5.21_typescript@5.9.2_/node_modules/@nuxt/devtools/dist/runtime/plugins/devtools.client.js")> &
+  InjectionType<typeof import("../../node_modules/.pnpm/@pinia+colada-nuxt@0.2.2_@pinia+colada@0.17.3_pinia@3.0.3_typescript@5.9.2_vue@3.5.21_t_13f6e6564d55f5174864bcb039cdcf7e/node_modules/@pinia/colada-nuxt/dist/runtime/plugin.js")> &
+  InjectionType<typeof import("../../node_modules/.pnpm/nuxt-auth-utils@0.5.24_magicast@0.3.5/node_modules/nuxt-auth-utils/dist/runtime/app/plugins/session.client.js")> &
+  InjectionType<typeof import("../../node_modules/.pnpm/@nuxt+ui@3.3.3_@babel+parser@7.28.3_change-case@5.4.4_db0@0.3.2_drizzle-orm@0.44.2_@clo_677be16ab0b720ca1f8ab28201c17a28/node_modules/@nuxt/ui/dist/runtime/plugins/colors.js")> &
   InjectionType<typeof import("../../node_modules/.pnpm/@nuxtjs+color-mode@3.5.2_magicast@0.3.5/node_modules/@nuxtjs/color-mode/dist/runtime/plugin.server.js")> &
   InjectionType<typeof import("../../node_modules/.pnpm/@nuxtjs+color-mode@3.5.2_magicast@0.3.5/node_modules/@nuxtjs/color-mode/dist/runtime/plugin.client.js")> &
-  InjectionType<typeof import("../../node_modules/.pnpm/@nuxt+icon@1.13.0_magicast@0.3.5_vite@6.3.5_@types+node@22.1.0_jiti@2.4.2_lightningcss@_2590b93d6d9281914d1108078ed1f5f0/node_modules/@nuxt/icon/dist/runtime/plugin.js")>
+  InjectionType<typeof import("../../node_modules/.pnpm/@nuxt+icon@1.15.0_magicast@0.3.5_vite@7.1.4_jiti@2.5.1_lightningcss@1.30.1_terser@5.44._95934c3fc74df3d138a84eb210252c6b/node_modules/@nuxt/icon/dist/runtime/plugin.js")> &
+  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@4.1.0_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.21_db0@0.3.2_drizzle-orm@0.44.2__b637849a2d9c17a2791e03a42783086c/node_modules/nuxt/dist/app/plugins/dev-server-logs.js")> &
+  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@4.1.0_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.21_db0@0.3.2_drizzle-orm@0.44.2__b637849a2d9c17a2791e03a42783086c/node_modules/nuxt/dist/app/plugins/warn.dev.server.js")> &
+  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@4.1.0_@parcel+watcher@2.5.1_@vue+compiler-sfc@3.5.21_db0@0.3.2_drizzle-orm@0.44.2__b637849a2d9c17a2791e03a42783086c/node_modules/nuxt/dist/app/plugins/check-if-layout-used.js")>
 
 declare module '#app' {
   interface NuxtApp extends NuxtAppInjections { }
 
   interface NuxtAppLiterals {
-    pluginName: 'nuxt:revive-payload:client' | 'nuxt:head' | 'nuxt:router' | 'session-fetch-plugin' | 'nuxt:payload' | 'nuxt:revive-payload:server' | 'nuxt:chunk-reload' | 'pinia' | 'nuxt:global-components' | 'nuxt:prefetch' | 'Pinia Colada' | '@nuxt/icon'
+    pluginName: 'vue-devtools-client' | 'nuxt:revive-payload:client' | 'nuxt:head' | 'nuxt:router' | 'session-fetch-plugin' | 'nuxt:browser-devtools-timing' | 'nuxt:revive-payload:server' | 'nuxt:chunk-reload' | 'pinia' | 'nuxt:global-components' | 'nuxt:prefetch' | 'nuxt:checkIfPageUnused' | 'Pinia Colada' | '@nuxt/icon' | 'nuxt:checkIfLayoutUsed'
   }
 }
 

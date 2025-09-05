@@ -41,7 +41,7 @@ export default {
     "content": "max-h-60 w-(--reka-combobox-trigger-width) bg-default shadow-lg rounded-md ring ring-default overflow-hidden data-[state=open]:animate-[scale-in_100ms_ease-out] data-[state=closed]:animate-[scale-out_100ms_ease-in] origin-(--reka-combobox-content-transform-origin) pointer-events-auto flex flex-col",
     "viewport": "relative divide-y divide-default scroll-py-1 overflow-y-auto flex-1",
     "group": "p-1 isolate",
-    "empty": "py-2 text-center text-sm text-muted",
+    "empty": "text-center text-muted",
     "label": "font-semibold text-highlighted",
     "separator": "-mx-1 my-1 h-px bg-border",
     "item": [
@@ -65,8 +65,8 @@ export default {
       "inline-flex items-center rounded-xs text-dimmed hover:text-default hover:bg-accented/75 disabled:pointer-events-none",
       "transition-colors"
     ],
-    "tagsItemDeleteIcon": "",
-    "tagsInput": ""
+    "tagsItemDeleteIcon": "shrink-0",
+    "tagsInput": "flex-1 border-0 bg-transparent placeholder:text-dimmed focus:outline-none disabled:cursor-not-allowed disabled:opacity-75"
   },
   "variants": {
     "buttonGroup": {
@@ -95,7 +95,8 @@ export default {
         "itemLeadingChipSize": "sm",
         "itemTrailingIcon": "size-4",
         "tagsItem": "text-[10px]/3",
-        "tagsItemDeleteIcon": "size-3"
+        "tagsItemDeleteIcon": "size-3",
+        "empty": "p-1 text-xs"
       },
       "sm": {
         "base": "px-2.5 py-1.5 text-xs gap-1.5",
@@ -112,7 +113,8 @@ export default {
         "itemLeadingChipSize": "sm",
         "itemTrailingIcon": "size-4",
         "tagsItem": "text-[10px]/3",
-        "tagsItemDeleteIcon": "size-3"
+        "tagsItemDeleteIcon": "size-3",
+        "empty": "p-1.5 text-xs"
       },
       "md": {
         "base": "px-2.5 py-1.5 text-sm gap-1.5",
@@ -129,7 +131,8 @@ export default {
         "itemLeadingChipSize": "md",
         "itemTrailingIcon": "size-5",
         "tagsItem": "text-xs",
-        "tagsItemDeleteIcon": "size-3.5"
+        "tagsItemDeleteIcon": "size-3.5",
+        "empty": "p-1.5 text-sm"
       },
       "lg": {
         "base": "px-3 py-2 text-sm gap-2",
@@ -146,7 +149,8 @@ export default {
         "itemLeadingChipSize": "md",
         "itemTrailingIcon": "size-5",
         "tagsItem": "text-xs",
-        "tagsItemDeleteIcon": "size-3.5"
+        "tagsItemDeleteIcon": "size-3.5",
+        "empty": "p-2 text-sm"
       },
       "xl": {
         "base": "px-3 py-2 text-base gap-2",
@@ -163,7 +167,8 @@ export default {
         "itemLeadingChipSize": "lg",
         "itemTrailingIcon": "size-6",
         "tagsItem": "text-sm",
-        "tagsItemDeleteIcon": "size-4"
+        "tagsItemDeleteIcon": "size-4",
+        "empty": "p-2 text-base"
       }
     },
     "variant": {
@@ -199,8 +204,7 @@ export default {
     },
     "multiple": {
       "true": {
-        "root": "flex-wrap",
-        "tagsInput": "border-0 bg-transparent placeholder:text-dimmed focus:outline-none disabled:cursor-not-allowed disabled:opacity-75"
+        "root": "flex-wrap"
       },
       "false": {
         "base": "w-full border-0 placeholder:text-dimmed focus:outline-none disabled:cursor-not-allowed disabled:opacity-75"
@@ -208,6 +212,16 @@ export default {
     }
   },
   "compoundVariants": [
+    {
+      "variant": "soft" as typeof variant[number],
+      "multiple": true,
+      "class": "has-focus:bg-elevated"
+    },
+    {
+      "variant": "ghost" as typeof variant[number],
+      "multiple": true,
+      "class": "has-focus:bg-elevated"
+    },
     {
       "color": "primary" as typeof color[number],
       "multiple": true,

@@ -26,8 +26,12 @@ const color = [
 
 export default {
   "slots": {
+    "root": [
+      "relative inline-flex items-center",
+      "flex-wrap"
+    ],
     "base": [
-      "relative group rounded-md inline-flex items-center focus:outline-none disabled:cursor-not-allowed disabled:opacity-75",
+      "rounded-md",
       "transition-colors"
     ],
     "leading": "absolute inset-y-0 start-0 flex items-center",
@@ -36,40 +40,25 @@ export default {
     "leadingAvatarSize": "",
     "trailing": "absolute inset-y-0 end-0 flex items-center",
     "trailingIcon": "shrink-0 text-dimmed",
-    "value": "truncate pointer-events-none",
-    "placeholder": "truncate text-dimmed",
-    "arrow": "fill-default",
-    "content": [
-      "max-h-60 w-(--reka-select-trigger-width) bg-default shadow-lg rounded-md ring ring-default overflow-hidden data-[state=open]:animate-[scale-in_100ms_ease-out] data-[state=closed]:animate-[scale-out_100ms_ease-in] origin-(--reka-select-content-transform-origin) pointer-events-auto flex flex-col",
-      "origin-(--reka-combobox-content-transform-origin) w-(--reka-combobox-trigger-width)"
-    ],
-    "viewport": "relative divide-y divide-default scroll-py-1 overflow-y-auto flex-1",
-    "group": "p-1 isolate",
-    "empty": "text-center text-muted",
-    "label": "font-semibold text-highlighted",
-    "separator": "-mx-1 my-1 h-px bg-border",
-    "item": [
-      "group relative w-full flex items-center select-none outline-none before:absolute before:z-[-1] before:inset-px before:rounded-md data-disabled:cursor-not-allowed data-disabled:opacity-75 text-default data-highlighted:not-data-disabled:text-highlighted data-highlighted:not-data-disabled:before:bg-elevated/50",
-      "transition-colors before:transition-colors"
-    ],
-    "itemLeadingIcon": [
-      "shrink-0 text-dimmed group-data-highlighted:not-group-data-disabled:text-default",
+    "item": "px-1.5 py-0.5 rounded-sm font-medium inline-flex items-center gap-0.5 ring ring-inset ring-accented bg-elevated text-default data-disabled:cursor-not-allowed data-disabled:opacity-75 wrap-anywhere data-[state=\"active\"]:bg-accented",
+    "itemText": "",
+    "itemDelete": [
+      "inline-flex items-center rounded-xs text-dimmed hover:text-default hover:bg-accented/75 disabled:pointer-events-none",
       "transition-colors"
     ],
-    "itemLeadingAvatar": "shrink-0",
-    "itemLeadingAvatarSize": "",
-    "itemLeadingChip": "shrink-0",
-    "itemLeadingChipSize": "",
-    "itemTrailing": "ms-auto inline-flex gap-1.5 items-center",
-    "itemTrailingIcon": "shrink-0",
-    "itemLabel": "truncate",
-    "input": "border-b border-default",
-    "focusScope": "flex flex-col min-h-0"
+    "itemDeleteIcon": "shrink-0",
+    "input": "flex-1 border-0 bg-transparent placeholder:text-dimmed focus:outline-none disabled:cursor-not-allowed disabled:opacity-75"
   },
   "variants": {
     "buttonGroup": {
-      "horizontal": "not-only:first:rounded-e-none not-only:last:rounded-s-none not-last:not-first:rounded-none focus-visible:z-[1]",
-      "vertical": "not-only:first:rounded-b-none not-only:last:rounded-t-none not-last:not-first:rounded-none focus-visible:z-[1]"
+      "horizontal": {
+        "root": "group has-focus-visible:z-[1]",
+        "base": "group-not-only:group-first:rounded-e-none group-not-only:group-last:rounded-s-none group-not-last:group-not-first:rounded-none"
+      },
+      "vertical": {
+        "root": "group has-focus-visible:z-[1]",
+        "base": "group-not-only:group-first:rounded-b-none group-not-only:group-last:rounded-t-none group-not-last:group-not-first:rounded-none"
+      }
     },
     "size": {
       "xs": {
@@ -79,14 +68,8 @@ export default {
         "leadingIcon": "size-4",
         "leadingAvatarSize": "3xs",
         "trailingIcon": "size-4",
-        "label": "p-1 text-[10px]/3 gap-1",
-        "item": "p-1 text-xs gap-1",
-        "itemLeadingIcon": "size-4",
-        "itemLeadingAvatarSize": "3xs",
-        "itemLeadingChip": "size-4",
-        "itemLeadingChipSize": "sm",
-        "itemTrailingIcon": "size-4",
-        "empty": "p-1 text-xs"
+        "item": "text-[10px]/3",
+        "itemDeleteIcon": "size-3"
       },
       "sm": {
         "base": "px-2.5 py-1.5 text-xs gap-1.5",
@@ -95,14 +78,8 @@ export default {
         "leadingIcon": "size-4",
         "leadingAvatarSize": "3xs",
         "trailingIcon": "size-4",
-        "label": "p-1.5 text-[10px]/3 gap-1.5",
-        "item": "p-1.5 text-xs gap-1.5",
-        "itemLeadingIcon": "size-4",
-        "itemLeadingAvatarSize": "3xs",
-        "itemLeadingChip": "size-4",
-        "itemLeadingChipSize": "sm",
-        "itemTrailingIcon": "size-4",
-        "empty": "p-1.5 text-xs"
+        "item": "text-[10px]/3",
+        "itemDeleteIcon": "size-3"
       },
       "md": {
         "base": "px-2.5 py-1.5 text-sm gap-1.5",
@@ -111,14 +88,8 @@ export default {
         "leadingIcon": "size-5",
         "leadingAvatarSize": "2xs",
         "trailingIcon": "size-5",
-        "label": "p-1.5 text-xs gap-1.5",
-        "item": "p-1.5 text-sm gap-1.5",
-        "itemLeadingIcon": "size-5",
-        "itemLeadingAvatarSize": "2xs",
-        "itemLeadingChip": "size-5",
-        "itemLeadingChipSize": "md",
-        "itemTrailingIcon": "size-5",
-        "empty": "p-1.5 text-sm"
+        "item": "text-xs",
+        "itemDeleteIcon": "size-3.5"
       },
       "lg": {
         "base": "px-3 py-2 text-sm gap-2",
@@ -127,14 +98,8 @@ export default {
         "leadingIcon": "size-5",
         "leadingAvatarSize": "2xs",
         "trailingIcon": "size-5",
-        "label": "p-2 text-xs gap-2",
-        "item": "p-2 text-sm gap-2",
-        "itemLeadingIcon": "size-5",
-        "itemLeadingAvatarSize": "2xs",
-        "itemLeadingChip": "size-5",
-        "itemLeadingChipSize": "md",
-        "itemTrailingIcon": "size-5",
-        "empty": "p-2 text-sm"
+        "item": "text-xs",
+        "itemDeleteIcon": "size-3.5"
       },
       "xl": {
         "base": "px-3 py-2 text-base gap-2",
@@ -143,21 +108,15 @@ export default {
         "leadingIcon": "size-6",
         "leadingAvatarSize": "xs",
         "trailingIcon": "size-6",
-        "label": "p-2 text-sm gap-2",
-        "item": "p-2 text-base gap-2",
-        "itemLeadingIcon": "size-6",
-        "itemLeadingAvatarSize": "xs",
-        "itemLeadingChip": "size-6",
-        "itemLeadingChipSize": "lg",
-        "itemTrailingIcon": "size-6",
-        "empty": "p-2 text-base"
+        "item": "text-sm",
+        "itemDeleteIcon": "size-4"
       }
     },
     "variant": {
       "outline": "text-highlighted bg-default ring ring-inset ring-accented",
-      "soft": "text-highlighted bg-elevated/50 hover:bg-elevated focus:bg-elevated disabled:bg-elevated/50",
+      "soft": "text-highlighted bg-elevated/50 hover:bg-elevated has-focus:bg-elevated disabled:bg-elevated/50",
       "subtle": "text-highlighted bg-elevated ring ring-inset ring-accented",
-      "ghost": "text-highlighted bg-transparent hover:bg-elevated focus:bg-elevated disabled:bg-transparent dark:disabled:bg-transparent",
+      "ghost": "text-highlighted bg-transparent hover:bg-elevated has-focus:bg-elevated disabled:bg-transparent dark:disabled:bg-transparent",
       "none": "text-highlighted bg-transparent"
     },
     "color": {
@@ -192,7 +151,7 @@ export default {
         "outline" as typeof variant[number],
         "subtle" as typeof variant[number]
       ],
-      "class": "focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary"
+      "class": "has-focus-visible:ring-2 has-focus-visible:ring-inset has-focus-visible:ring-primary"
     },
     {
       "color": "secondary" as typeof color[number],
@@ -200,7 +159,7 @@ export default {
         "outline" as typeof variant[number],
         "subtle" as typeof variant[number]
       ],
-      "class": "focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-secondary"
+      "class": "has-focus-visible:ring-2 has-focus-visible:ring-inset has-focus-visible:ring-secondary"
     },
     {
       "color": "success" as typeof color[number],
@@ -208,7 +167,7 @@ export default {
         "outline" as typeof variant[number],
         "subtle" as typeof variant[number]
       ],
-      "class": "focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-success"
+      "class": "has-focus-visible:ring-2 has-focus-visible:ring-inset has-focus-visible:ring-success"
     },
     {
       "color": "info" as typeof color[number],
@@ -216,7 +175,7 @@ export default {
         "outline" as typeof variant[number],
         "subtle" as typeof variant[number]
       ],
-      "class": "focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-info"
+      "class": "has-focus-visible:ring-2 has-focus-visible:ring-inset has-focus-visible:ring-info"
     },
     {
       "color": "warning" as typeof color[number],
@@ -224,7 +183,7 @@ export default {
         "outline" as typeof variant[number],
         "subtle" as typeof variant[number]
       ],
-      "class": "focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-warning"
+      "class": "has-focus-visible:ring-2 has-focus-visible:ring-inset has-focus-visible:ring-warning"
     },
     {
       "color": "error" as typeof color[number],
@@ -232,7 +191,7 @@ export default {
         "outline" as typeof variant[number],
         "subtle" as typeof variant[number]
       ],
-      "class": "focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-error"
+      "class": "has-focus-visible:ring-2 has-focus-visible:ring-inset has-focus-visible:ring-error"
     },
     {
       "color": "primary" as typeof color[number],
@@ -270,7 +229,7 @@ export default {
         "outline" as typeof variant[number],
         "subtle" as typeof variant[number]
       ],
-      "class": "focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-inverted"
+      "class": "has-focus-visible:ring-2 has-focus-visible:ring-inset has-focus-visible:ring-inverted"
     },
     {
       "color": "neutral" as typeof color[number],

@@ -1,5 +1,4 @@
 
-import { _replaceAppConfig } from '#app/config'
 import { defuFn } from 'defu'
 
 const inlineConfig = {
@@ -27,12 +26,14 @@ const inlineConfig = {
       "close": "i-lucide-x",
       "ellipsis": "i-lucide-ellipsis",
       "external": "i-lucide-arrow-up-right",
+      "file": "i-lucide-file",
       "folder": "i-lucide-folder",
       "folderOpen": "i-lucide-folder-open",
       "loading": "i-lucide-loader-circle",
       "minus": "i-lucide-minus",
       "plus": "i-lucide-plus",
-      "search": "i-lucide-search"
+      "search": "i-lucide-search",
+      "upload": "i-lucide-upload"
     }
   },
   "icon": {
@@ -232,12 +233,16 @@ const inlineConfig = {
   }
 }
 
+/** client **/
+import { _replaceAppConfig } from '#app/config'
+
 // Vite - webpack is handled directly in #app/config
-if (import.meta.hot) {
+if (import.meta.dev && !import.meta.nitro && import.meta.hot) {
   import.meta.hot.accept((newModule) => {
     _replaceAppConfig(newModule.default)
   })
 }
+/** client-end **/
 
 import cfg0 from "/Users/midnight/note/app/app.config.ts"
 

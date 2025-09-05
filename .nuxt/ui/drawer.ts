@@ -41,7 +41,7 @@ export default {
     },
     "inset": {
       "true": {
-        "content": "rounded-lg after:hidden"
+        "content": "rounded-lg after:hidden overflow-hidden [--initial-transform:calc(100%+1.5rem)]"
       }
     }
   },

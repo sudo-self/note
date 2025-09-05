@@ -28,7 +28,7 @@ export default {
   "slots": {
     "root": "relative inline-flex items-center",
     "base": [
-      "w-full rounded-md border-0 placeholder:text-dimmed focus:outline-none disabled:cursor-not-allowed disabled:opacity-75",
+      "w-full rounded-md border-0 appearance-none placeholder:text-dimmed focus:outline-none disabled:cursor-not-allowed disabled:opacity-75",
       "transition-colors"
     ],
     "leading": "absolute start-0 flex items-start",

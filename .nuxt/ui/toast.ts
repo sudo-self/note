@@ -18,45 +18,38 @@ export default {
     "avatar": "shrink-0",
     "avatarSize": "2xl",
     "actions": "flex gap-1.5 shrink-0",
-    "progress": "absolute inset-x-0 bottom-0 h-1 z-[-1]",
+    "progress": "absolute inset-x-0 bottom-0",
     "close": "p-0"
   },
   "variants": {
     "color": {
       "primary": {
         "root": "focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary",
-        "icon": "text-primary",
-        "progress": "bg-primary"
+        "icon": "text-primary"
       },
       "secondary": {
         "root": "focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-secondary",
-        "icon": "text-secondary",
-        "progress": "bg-secondary"
+        "icon": "text-secondary"
       },
       "success": {
         "root": "focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-success",
-        "icon": "text-success",
-        "progress": "bg-success"
+        "icon": "text-success"
       },
       "info": {
         "root": "focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-info",
-        "icon": "text-info",
-        "progress": "bg-info"
+        "icon": "text-info"
       },
       "warning": {
         "root": "focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-warning",
-        "icon": "text-warning",
-        "progress": "bg-warning"
+        "icon": "text-warning"
       },
       "error": {
         "root": "focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-error",
-        "icon": "text-error",
-        "progress": "bg-error"
+        "icon": "text-error"
       },
       "neutral": {
         "root": "focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-inverted",
-        "icon": "text-highlighted",
-        "progress": "bg-inverted"
+        "icon": "text-highlighted"
       }
     },
     "orientation": {

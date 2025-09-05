@@ -31,7 +31,7 @@ export default {
     },
     "active": {
       "true": {
-        "dot": "bg-inverted"
+        "dot": "data-[state=active]:bg-inverted"
       }
     }
   }
