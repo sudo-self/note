@@ -11,15 +11,22 @@ A demonstration using [Nuxt](https://nuxt.com) with server-side rendering on the
 - User interface made with [Nuxt UI](https://ui.nuxt.com)
 - Embed [Drizzle Studio](https://orm.drizzle.team/drizzle-studio/overview/) in the [Nuxt DevTools](https://devtools.nuxt.com)
 
-## Live demos
 
-- CloudFlare Pages + D1: https://nuxt-todos-edge.pages.dev
-- CloudFlare Pages + Turso: https://nuxt-todos-turso.pages.dev
-- Lagon.app + Turso: https://nuxt-todos.lagon.dev
-- Vercel Edge + Turso: https://nuxt-todos-edge.vercel.app
-- Netlify Edge + Turso: https://nuxt-todos-edge.netlify.app
-- Deno Deploy + Turso: https://nuxt-todos-edge.deno.dev
+## Database Schema
 
+| #  | Column Name | Type     | NULL | Default Value |
+|----|-------------|----------|------|---------------|
+| 1  | id          | integer  |      |               |
+| 2  | user_id     | integer  |      |               |
+| 3  | title       | text     |      |               |
+| 4  | completed   | integer  |      | 0             |
+| 5  | created_at  | integer  |      |               |
+
+### Constraints
+- **id**: Primary Key  
+- **user_id**: Foreign Key referencing `users.id`  
+- **completed**: 0 = not done, 1 = done  
+- **created_at**: Unix timestamp
 
 ## SQL
 
