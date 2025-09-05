@@ -115,23 +115,36 @@ const items = [
         <NuxtPage />
       </UCard>
 
-      <footer class="text-center mt-2">
-        <NuxtLink
-          href="https://github.com/sudo-self/"
-          target="_blank"
-          class="text-sm text-neutral-500 hover:text-neutral-700"
-        >
-          GitHub
-        </NuxtLink>
-        ·
-        <NuxtLink
-          href="https://developers.cloudflare.com/d1/"
-          target="_blank"
-          class="text-sm text-neutral-500 hover:text-neutral-700"
-        >
-          serverless D1
-        </NuxtLink>
-      </footer>
+     <footer class="text-center mt-2 space-x-2">
+  <NuxtLink
+    href="https://github.com/sudo-self/"
+    target="_blank"
+    class="text-sm text-neutral-500 hover:text-neutral-700"
+  >
+    GitHub
+  </NuxtLink>
+  ·
+  <NuxtLink
+    href="https://developers.cloudflare.com/d1/"
+    target="_blank"
+    class="text-sm text-neutral-500 hover:text-neutral-700"
+  >
+    serverless D1
+  </NuxtLink>
+  ·
+  <NuxtLink
+    href="https://github.com/sudo-self/note/actions/workflows/nuxthub.yml"
+    target="_blank"
+    class="inline-block align-middle"
+  >
+    <img
+      src="https://github.com/sudo-self/note/actions/workflows/nuxthub.yml/badge.svg"
+      alt="Deploy to NuxtHub"
+      class="h-4 inline"
+    />
+  </NuxtLink>
+</footer>
+
     </UContainer>
   </UApp>
 </template>
