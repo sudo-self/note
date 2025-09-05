@@ -3,17 +3,12 @@ import { useRoute, useRouter } from 'vue-router'
 import { nanoid } from 'nanoid'
 import { todosQuery } from '~/queries/todos'
 
+// Nuxt 4 middleware
+definePageMeta({ middleware: 'auth' })
+
 const route = useRoute()
 const router = useRouter()
-
-// FIX: useToast does not exist in Nuxt 4, create a stub for now
-const toast = {
-  add: (options: { title: string; color?: string }) => console.log('Toast:', options)
-}
-
 const slug = route.params.slug as string
-
-definePageMeta({ middleware: 'auth' })
 
 const newTodo = ref('')
 const newTodoInput = useTemplateRef('new-todo')
@@ -21,16 +16,21 @@ const todos = ref<Todo[]>([])
 const loading = ref(false)
 const queryCache = useQueryCache()
 
+// Temporary toast stub for Nuxt 4
+// Replace with a real plugin like vue-toastification later
+const toast = {
+  add: (options: { title: string; color?: string }) =>
+    console.log('Toast:', options)
+}
+
+// Fetch todos for the current slug
 const fetchTodos = async () => {
   try {
     loading.value = true
     const allTodos: Todo[] = await $fetch('/api/todos')
     todos.value = allTodos.filter(todo => todo.slug === slug)
-
     if (!todos.value.length) {
       toast.add({ title: 'Oops, note not found.', color: 'red' })
-      // optionally redirect
-      // router.push('/')
     }
   } catch (err) {
     console.error(err)
@@ -42,13 +42,13 @@ const fetchTodos = async () => {
 
 onMounted(fetchTodos)
 
+// Add a new todo
 const { mutate: addTodo } = useMutation({
   mutation: async (title: string) => {
     if (!title.trim()) throw new Error('Title is required')
-    const slugToUse = slug || nanoid(10)
     return $fetch('/api/todos', {
       method: 'POST',
-      body: { title, completed: 0, slug: slugToUse }
+      body: { title, completed: 0, slug: slug || nanoid(10) }
     })
   },
   async onSuccess() {
@@ -64,6 +64,7 @@ const { mutate: addTodo } = useMutation({
   }
 })
 
+// Toggle completion
 const { mutate: toggleTodo } = useMutation({
   mutation: async (todo: Todo) =>
     $fetch(`/api/todos/${todo.id}`, {
@@ -75,6 +76,7 @@ const { mutate: toggleTodo } = useMutation({
   }
 })
 
+// Delete todo
 const { mutate: deleteTodo } = useMutation({
   mutation: async (todo: Todo) => $fetch(`/api/todos/${todo.id}`, { method: 'DELETE' }),
   async onSuccess() {
@@ -82,6 +84,7 @@ const { mutate: deleteTodo } = useMutation({
   }
 })
 
+// Share todo
 const shareTodo = async (todo: Todo) => {
   const shareUrl = `${window.location.origin}/${todo.slug}`
   if (navigator.canShare && navigator.canShare({ url: shareUrl })) {
@@ -156,6 +159,7 @@ const shareTodo = async (todo: Todo) => {
     </ul>
   </form>
 </template>
+
 
 
 
