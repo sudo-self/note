@@ -28,7 +28,7 @@
     </p>
     <USeparator />
     <p class="text-sm text-(--ui-text-muted) italic">
-      personal information is not stored in the database, only the notes created with your GitHub ID.
+    personal info is not stored in the DB only the notes created with GitHub ID.
     </p>
   </div>
 </template>
