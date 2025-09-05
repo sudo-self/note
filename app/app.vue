@@ -124,7 +124,7 @@ const items = [
     <img
       src="https://github.com/sudo-self/note/actions/workflows/nuxthub.yml/badge.svg"
       alt="Deploy to NuxtHub"
-      class="h-6 inline"
+      class="h-4 inline"
     />
   </NuxtLink>
 </footer>
