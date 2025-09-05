@@ -23,9 +23,9 @@ useHead({
 
 useSeoMeta({
   viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
-  title: 'Atidone',
+  title: 'note.JesseJesse.com',
   description:
-    'A Nuxt demo hosted with edge-side rendering, authentication and queyring a Cloudflare D1 database',
+    'A secure notes app built with nuxt featuring edge-side rendering, authentication and Cloudflare D1',
   ogImage: '/social-image.png',
   twitterImage: '/social-image.png',
   twitterCard: 'summary_large_image'
@@ -125,11 +125,11 @@ const items = [
         </NuxtLink>
         ·
         <NuxtLink
-          href="https://turso.tech"
+          href="https://developers.cloudflare.com/d1/"
           target="_blank"
           class="text-sm text-neutral-500 hover:text-neutral-700"
         >
-          SQLite
+          serverless D1
         </NuxtLink>
       </footer>
     </UContainer>
