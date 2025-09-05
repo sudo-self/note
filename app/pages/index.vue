@@ -28,8 +28,7 @@
     </p>
     <USeparator />
     <p class="text-sm text-(--ui-text-muted) italic">
-    Personal info and account data of any kind is not stored in the app.<br />
-    Only the notes you create linked with your GitHub ID and login.
+    Personal info and account data of any kind is not stored in the app. Only the notes you create linked with your GitHub ID and login.
     </p>
   </div>
 </template>
