@@ -24,11 +24,11 @@
       </NuxtLink>
     </p>
     <p>
-      Create, Update, Delete, & Share.
+      Create, Update, Delete, & Share (optional)
     </p>
     <USeparator />
     <p class="text-sm text-(--ui-text-muted) italic">
-    Personal info and account data of any kind is not stored in the app. Only the notes you create linked with your GitHub ID and login.
+    ** personal info and github data of any kind is not stored in the app. Only the notes you create linked with your GitHub ID and login.
     </p>
   </div>
 </template>
