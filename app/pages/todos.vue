@@ -2,9 +2,7 @@
 import { todosQuery } from '~/queries/todos'
 import { nanoid } from 'nanoid'
 
-definePageMeta({
-  middleware: 'auth'
-})
+definePageMeta({ middleware: 'auth' })
 
 const newTodo = ref('')
 const newTodoInput = useTemplateRef('new-todo')
@@ -13,43 +11,29 @@ const toast = useToast()
 const queryCache = useQueryCache()
 const { data: todos } = useQuery(todosQuery)
 
-
 const { mutate: addTodo, isLoading: loading } = useMutation({
   mutation: (title: string) => {
     if (!title.trim()) throw new Error('Title is required')
     return $fetch('/api/todos', {
       method: 'POST',
-      body: { title, completed: 0, slug: nanoid(10) } 
+      body: { title, completed: 0, slug: nanoid(10) }
     })
   },
-
   async onSuccess(todo) {
     await queryCache.invalidateQueries(todosQuery)
     toast.add({ title: `Todo "${todo.title}" created.` })
   },
-
   onSettled() {
     newTodo.value = ''
-    nextTick()
-      .then(() => nextTick())
-      .then(() => {
-        newTodoInput.value?.input?.focus()
-      })
+    nextTick().then(() => nextTick()).then(() => {
+      newTodoInput.value?.input?.focus()
+    })
   },
-
   onError(err) {
-    if (isNuxtZodError(err)) {
-      const title = err.data?.data.issues
-        .map(issue => issue.message)
-        .join('\n')
-      if (title) toast.add({ title, color: 'red' })
-    } else {
-      console.error(err)
-      toast.add({ title: 'Unexpected Error', color: 'red' })
-    }
+    console.error(err)
+    toast.add({ title: 'Unexpected Error', color: 'red' })
   }
 })
-
 
 const { mutate: toggleTodo } = useMutation({
   mutation: (todo: Todo) =>
@@ -62,39 +46,30 @@ const { mutate: toggleTodo } = useMutation({
   }
 })
 
-
 const { mutate: deleteTodo } = useMutation({
-  mutation: (todo: Todo) => $fetch(`/api/todos/${todo.id}`, { method: 'DELETE' }),
-  async onSuccess(_result, todo) {
+  mutation: (todo: Todo) =>
+    $fetch(`/api/todos/${todo.id}`, { method: 'DELETE' }),
+  async onSuccess(_res, todo) {
     await queryCache.invalidateQueries(todosQuery)
     toast.add({ title: `Todo "${todo.title}" deleted.` })
   }
 })
 
-
 const shareTodo = async (todo: Todo) => {
-
   if (!todo.slug) {
     todo.slug = nanoid(10)
-    await $fetch(`/api/todos/${todo.id}`, { 
-      method: 'PATCH', 
-      body: { slug: todo.slug } 
+    await $fetch(`/api/todos/${todo.id}`, {
+      method: 'PATCH',
+      body: { slug: todo.slug }
     })
     await queryCache.invalidateQueries(todosQuery)
   }
-
   const shareUrl = `${window.location.origin}/${todo.slug}`
-
   if (navigator.canShare && navigator.canShare({ url: shareUrl })) {
     try {
-      await navigator.share({
-        title: 'Check out this note',
-        text: todo.title,
-        url: shareUrl
-      })
+      await navigator.share({ title: 'Check out this note', text: todo.title, url: shareUrl })
       toast.add({ title: 'Shared successfully!' })
-    } catch (err) {
-      console.error(err)
+    } catch {
       toast.add({ title: 'Share cancelled', color: 'red' })
     }
   } else {
@@ -127,20 +102,12 @@ const shareTodo = async (todo: Todo) => {
     </div>
 
     <ul class="divide-y divide-gray-200 dark:divide-gray-800">
-      <li
-        v-for="todo of todos"
-        :key="todo.id"
-        class="flex items-center gap-2 py-2"
-      >
-        <span
-          class="flex-1 font-medium"
-          :class="[todo.completed ? 'line-through text-gray-500' : '']"
-        >{{ todo.title }}</span>
+      <li v-for="todo of todos" :key="todo.id" class="flex items-center gap-2 py-2">
+        <span class="flex-1 font-medium" :class="[todo.completed ? 'line-through text-gray-500' : '']">
+          {{ todo.title }}
+        </span>
 
-        <USwitch
-          :model-value="Boolean(todo.completed)"
-          @update:model-value="toggleTodo(todo)"
-        />
+        <USwitch :model-value="Boolean(todo.completed)" @update:model-value="toggleTodo(todo)" />
 
         <UButton
           color="primary"
@@ -161,5 +128,6 @@ const shareTodo = async (todo: Todo) => {
     </ul>
   </form>
 </template>
+
 
 
