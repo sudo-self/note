@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router'
-import { useToast } from '#app'
+import { nanoid } from 'nanoid'
 import { todosQuery } from '~/queries/todos'
 
 const route = useRoute()
 const router = useRouter()
-const toast = useToast()
+
+
+const toast = {
+  add: (options: { title: string; color?: string }) => console.log('Toast:', options)
+}
 
 const slug = route.params.slug as string
 
@@ -23,9 +27,10 @@ const fetchTodos = async () => {
     loading.value = true
     const allTodos: Todo[] = await $fetch('/api/todos')
     todos.value = allTodos.filter(todo => todo.slug === slug)
+
     if (!todos.value.length) {
       toast.add({ title: 'Oops, note not found.', color: 'red' })
-      // optionally redirect back to home
+      // optionally redirect to home
       // router.push('/')
     }
   } catch (err) {
@@ -38,7 +43,7 @@ const fetchTodos = async () => {
 
 onMounted(fetchTodos)
 
-
+// Add new todo
 const { mutate: addTodo } = useMutation({
   mutation: async (title: string) => {
     if (!title.trim()) throw new Error('Title is required')
@@ -77,8 +82,7 @@ const { mutate: toggleTodo } = useMutation({
 
 
 const { mutate: deleteTodo } = useMutation({
-  mutation: async (todo: Todo) =>
-    $fetch(`/api/todos/${todo.id}`, { method: 'DELETE' }),
+  mutation: async (todo: Todo) => $fetch(`/api/todos/${todo.id}`, { method: 'DELETE' }),
   async onSuccess() {
     await fetchTodos()
   }
@@ -159,4 +163,5 @@ const shareTodo = async (todo: Todo) => {
     </ul>
   </form>
 </template>
+
 
