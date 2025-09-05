@@ -14,14 +14,14 @@
         target="_blank"
         rel="noopener"
         class="text-(--ui-primary)"
-      >Cloudflare Pages</a> SSR on the edge featuring a serverless<NuxtLink
+      >Cloudflare Pages</a>App includes SSR from the edge and a serverless<NuxtLink
         href="https://developers.cloudflare.com/d1/"
         target="_blank"
         rel="noopener"
         class="text-(--ui-primary)"
       >
-        Cloudflare D1
-      </NuxtLink>.
+        Cloudflare D1.
+      </NuxtLink>
     </p>
     <p>
       Login, create & update notes with confidence.
