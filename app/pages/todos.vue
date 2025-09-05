@@ -13,12 +13,13 @@ const toast = useToast()
 const queryCache = useQueryCache()
 const { data: todos } = useQuery(todosQuery)
 
+
 const { mutate: addTodo, isLoading: loading } = useMutation({
   mutation: (title: string) => {
     if (!title.trim()) throw new Error('Title is required')
     return $fetch('/api/todos', {
       method: 'POST',
-      body: { title, completed: 0 }
+      body: { title, completed: 0, slug: nanoid(10) } 
     })
   },
 
@@ -49,6 +50,7 @@ const { mutate: addTodo, isLoading: loading } = useMutation({
   }
 })
 
+
 const { mutate: toggleTodo } = useMutation({
   mutation: (todo: Todo) =>
     $fetch(`/api/todos/${todo.id}`, {
@@ -59,6 +61,7 @@ const { mutate: toggleTodo } = useMutation({
     await queryCache.invalidateQueries(todosQuery)
   }
 })
+
 
 const { mutate: deleteTodo } = useMutation({
   mutation: (todo: Todo) => $fetch(`/api/todos/${todo.id}`, { method: 'DELETE' }),
@@ -71,8 +74,16 @@ const { mutate: deleteTodo } = useMutation({
 
 const shareTodo = async (todo: Todo) => {
 
-  const slug = (todo.slug || nanoid(10)).replace(/[^a-zA-Z0-9_-]/g, '')
-  const shareUrl = `${window.location.origin}/${slug}`
+  if (!todo.slug) {
+    todo.slug = nanoid(10)
+    await $fetch(`/api/todos/${todo.id}`, { 
+      method: 'PATCH', 
+      body: { slug: todo.slug } 
+    })
+    await queryCache.invalidateQueries(todosQuery)
+  }
+
+  const shareUrl = `${window.location.origin}/${todo.slug}`
 
   if (navigator.canShare && navigator.canShare({ url: shareUrl })) {
     try {
@@ -87,7 +98,6 @@ const shareTodo = async (todo: Todo) => {
       toast.add({ title: 'Share cancelled', color: 'red' })
     }
   } else {
-
     await navigator.clipboard.writeText(shareUrl)
     toast.add({ title: 'Link copied to clipboard!' })
   }
@@ -151,4 +161,5 @@ const shareTodo = async (todo: Todo) => {
     </ul>
   </form>
 </template>
+
 
