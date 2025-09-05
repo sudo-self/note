@@ -115,34 +115,38 @@ const items = [
         <NuxtPage />
       </UCard>
 
-     <footer class="text-center mt-2 space-x-2">
-  <NuxtLink
-    href="https://github.com/sudo-self/note"
-    target="_blank"
-    class="text-sm text-neutral-500 hover:text-neutral-700"
-  >
-    GitHub
-  </NuxtLink>
-  ·
-  <NuxtLink
-    href="https://developers.cloudflare.com/d1/"
-    target="_blank"
-    class="text-sm text-neutral-500 hover:text-neutral-700"
-  >
-    serverless D1
-  </NuxtLink>
-  ·
-  <NuxtLink
-    href="https://github.com/sudo-self/note/actions/workflows/nuxthub.yml"
-    target="_blank"
-    class="inline-block align-middle"
-  >
-    <img
-      src="https://github.com/sudo-self/note/actions/workflows/nuxthub.yml/badge.svg"
-      alt="Deploy to NuxtHub"
-      class="h-4 inline"
-    />
-  </NuxtLink>
+   <footer class="text-center mt-4 space-y-2">
+  <div class="space-x-2">
+    <NuxtLink
+      href="https://github.com/sudo-self/note"
+      target="_blank"
+      class="text-sm text-neutral-500 hover:text-neutral-700"
+    >
+      GitHub
+    </NuxtLink>
+    ·
+    <NuxtLink
+      href="https://developers.cloudflare.com/d1/"
+      target="_blank"
+      class="text-sm text-neutral-500 hover:text-neutral-700"
+    >
+      Cloudflare D1
+    </NuxtLink>
+  </div>
+
+  <div>
+    <NuxtLink
+      href="https://github.com/sudo-self/note/actions/workflows/nuxthub.yml"
+      target="_blank"
+      class="inline-block"
+    >
+      <img
+        src="https://github.com/sudo-self/note/actions/workflows/nuxthub.yml/badge.svg"
+        alt="Deploy to NuxtHub"
+        class="h-6 inline"
+      />
+    </NuxtLink>
+  </div>
 </footer>
 
     </UContainer>
