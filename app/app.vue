@@ -61,11 +61,13 @@ const items = [
 
       <UCard variant="subtle">
         <template #header>
-          <h3 class="text-lg font-semibold leading-6">
-            <NuxtLink to="https://note.jessejesse.com">
-              powered by JesseJesse.com
+          <h3 class="site-title">
+            <NuxtLink to="https://note.jessejesse.com" class="bling-link">
+              JesseJesse.com
+              <span class="shine"></span>
             </NuxtLink>
           </h3>
+
           <UButton
             v-if="!loggedIn"
             to="/api/auth/github"
@@ -115,21 +117,19 @@ const items = [
         <NuxtPage />
       </UCard>
 
-<footer class="text-center mt-4">
-  <NuxtLink
-    href="https://github.com/sudo-self/note/actions/workflows/nuxthub.yml"
-    target="_blank"
-    class="inline-block"
-  >
-    <img
-      src="https://github.com/sudo-self/note/actions/workflows/nuxthub.yml/badge.svg"
-      alt="Deploy to NuxtHub"
-      class="h-5 inline"
-    />
-  </NuxtLink>
-</footer>
-
-
+      <footer class="text-center mt-4">
+        <NuxtLink
+          href="https://github.com/sudo-self/note/actions/workflows/nuxthub.yml"
+          target="_blank"
+          class="inline-block"
+        >
+          <img
+            src="https://github.com/sudo-self/note/actions/workflows/nuxthub.yml/badge.svg"
+            alt="Deploy to NuxtHub"
+            class="h-5 inline"
+          />
+        </NuxtLink>
+      </footer>
     </UContainer>
   </UApp>
 </template>
@@ -138,4 +138,55 @@ const items = [
 body {
   @apply font-sans text-neutral-950 bg-neutral-50 dark:bg-neutral-950 dark:text-neutral-50;
 }
+
+/* --- Shine effect for h3 --- */
+.site-title {
+  font-size: 1.125rem; /* ~text-lg */
+  font-weight: 600;    /* ~font-semibold */
+  line-height: 1.5;    /* ~leading-6 */
+  position: relative;
+  display: inline-block;
+}
+
+.bling-link {
+  color: #00dc82; /* Nuxt green */
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.bling-link:hover {
+  text-decoration: underline;
+}
+
+.shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.bling-link:hover .shine {
+  animation: shine 1.2s ease-in-out forwards;
+  opacity: 1;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
 </style>
+
