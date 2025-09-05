@@ -6,7 +6,7 @@ import { todosQuery } from '~/queries/todos'
 const route = useRoute()
 const router = useRouter()
 
-
+// FIX: useToast does not exist in Nuxt 4, create a stub for now
 const toast = {
   add: (options: { title: string; color?: string }) => console.log('Toast:', options)
 }
@@ -21,7 +21,6 @@ const todos = ref<Todo[]>([])
 const loading = ref(false)
 const queryCache = useQueryCache()
 
-
 const fetchTodos = async () => {
   try {
     loading.value = true
@@ -30,7 +29,7 @@ const fetchTodos = async () => {
 
     if (!todos.value.length) {
       toast.add({ title: 'Oops, note not found.', color: 'red' })
-      // optionally redirect to home
+      // optionally redirect
       // router.push('/')
     }
   } catch (err) {
@@ -43,7 +42,6 @@ const fetchTodos = async () => {
 
 onMounted(fetchTodos)
 
-// Add new todo
 const { mutate: addTodo } = useMutation({
   mutation: async (title: string) => {
     if (!title.trim()) throw new Error('Title is required')
@@ -53,7 +51,6 @@ const { mutate: addTodo } = useMutation({
       body: { title, completed: 0, slug: slugToUse }
     })
   },
-
   async onSuccess() {
     await fetchTodos()
     newTodo.value = ''
@@ -61,13 +58,11 @@ const { mutate: addTodo } = useMutation({
       newTodoInput.value?.input?.focus()
     })
   },
-
   onError(err) {
     console.error(err)
     toast.add({ title: 'Unexpected Error', color: 'red' })
   }
 })
-
 
 const { mutate: toggleTodo } = useMutation({
   mutation: async (todo: Todo) =>
@@ -80,14 +75,12 @@ const { mutate: toggleTodo } = useMutation({
   }
 })
 
-
 const { mutate: deleteTodo } = useMutation({
   mutation: async (todo: Todo) => $fetch(`/api/todos/${todo.id}`, { method: 'DELETE' }),
   async onSuccess() {
     await fetchTodos()
   }
 })
-
 
 const shareTodo = async (todo: Todo) => {
   const shareUrl = `${window.location.origin}/${todo.slug}`
@@ -163,5 +156,6 @@ const shareTodo = async (todo: Todo) => {
     </ul>
   </form>
 </template>
+
 
 
