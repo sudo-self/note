@@ -24,7 +24,7 @@
       </NuxtLink>.
     </p>
     <p>
-      Login, create & update secure notes.
+      login, create & update notes with confidence
     </p>
     <USeparator />
     <p class="text-sm text-(--ui-text-muted) italic">
