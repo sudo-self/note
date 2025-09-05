@@ -1,6 +1,5 @@
 # Secure Notes app built with Nuxt served from the Edge
 
-## [![Deploy to NuxtHub](https://github.com/sudo-self/still-hill-x6fktz/actions/workflows/nuxthub.yml/badge.svg)](https://github.com/sudo-self/still-hill-x6fktz/actions/workflows/nuxthub.yml)
 
 A demonstration using [Nuxt](https://nuxt.com) with server-side rendering on the edge, authentication and database querying using SQLite in production.
 
