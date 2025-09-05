@@ -1,27 +1,24 @@
 <script setup lang="ts">
 import { todosQuery } from '~/queries/todos'
+import { nanoid } from 'nanoid'
 
 definePageMeta({
   middleware: 'auth'
 })
+
 const newTodo = ref('')
 const newTodoInput = useTemplateRef('new-todo')
 
 const toast = useToast()
 const queryCache = useQueryCache()
-
 const { data: todos } = useQuery(todosQuery)
 
 const { mutate: addTodo, isLoading: loading } = useMutation({
   mutation: (title: string) => {
     if (!title.trim()) throw new Error('Title is required')
-
     return $fetch('/api/todos', {
       method: 'POST',
-      body: {
-        title,
-        completed: 0
-      }
+      body: { title, completed: 0 }
     })
   },
 
@@ -32,9 +29,6 @@ const { mutate: addTodo, isLoading: loading } = useMutation({
 
   onSettled() {
     newTodo.value = ''
-    // the first nextTick allows loading to become false and re enable the input
-    // the second nextTick allows the input to be rendered again so it can be focused
-    // a better solution would be to use a custom `v-focus` directive or a more elaborated focus management solution
     nextTick()
       .then(() => nextTick())
       .then(() => {
@@ -47,11 +41,8 @@ const { mutate: addTodo, isLoading: loading } = useMutation({
       const title = err.data?.data.issues
         .map(issue => issue.message)
         .join('\n')
-      if (title) {
-        toast.add({ title, color: 'red' })
-      }
-    }
-    else {
+      if (title) toast.add({ title, color: 'red' })
+    } else {
       console.error(err)
       toast.add({ title: 'Unexpected Error', color: 'red' })
     }
@@ -62,32 +53,49 @@ const { mutate: toggleTodo } = useMutation({
   mutation: (todo: Todo) =>
     $fetch(`/api/todos/${todo.id}`, {
       method: 'PATCH',
-      body: {
-        completed: Number(!todo.completed)
-      }
+      body: { completed: Number(!todo.completed) }
     }),
-
   async onSuccess() {
     await queryCache.invalidateQueries(todosQuery)
   }
 })
 
 const { mutate: deleteTodo } = useMutation({
-  mutation: (todo: Todo) =>
-    $fetch(`/api/todos/${todo.id}`, { method: 'DELETE' }),
-
+  mutation: (todo: Todo) => $fetch(`/api/todos/${todo.id}`, { method: 'DELETE' }),
   async onSuccess(_result, todo) {
     await queryCache.invalidateQueries(todosQuery)
     toast.add({ title: `Todo "${todo.title}" deleted.` })
   }
 })
+
+
+const shareTodo = async (todo: Todo) => {
+
+  const slug = (todo.slug || nanoid(10)).replace(/[^a-zA-Z0-9_-]/g, '')
+  const shareUrl = `${window.location.origin}/${slug}`
+
+  if (navigator.canShare && navigator.canShare({ url: shareUrl })) {
+    try {
+      await navigator.share({
+        title: 'Check out this note',
+        text: todo.title,
+        url: shareUrl
+      })
+      toast.add({ title: 'Shared successfully!' })
+    } catch (err) {
+      console.error(err)
+      toast.add({ title: 'Share cancelled', color: 'red' })
+    }
+  } else {
+
+    await navigator.clipboard.writeText(shareUrl)
+    toast.add({ title: 'Link copied to clipboard!' })
+  }
+}
 </script>
 
 <template>
-  <form
-    class="flex flex-col gap-4"
-    @submit.prevent="addTodo(newTodo)"
-  >
+  <form class="flex flex-col gap-4" @submit.prevent="addTodo(newTodo)">
     <div class="flex items-center gap-2">
       <UInput
         ref="new-todo"
@@ -100,7 +108,6 @@ const { mutate: deleteTodo } = useMutation({
         autofocus
         :ui="{ wrapper: 'flex-1' }"
       />
-
       <UButton
         type="submit"
         icon="i-lucide-plus"
@@ -113,7 +120,7 @@ const { mutate: deleteTodo } = useMutation({
       <li
         v-for="todo of todos"
         :key="todo.id"
-        class="flex items-center gap-4 py-2"
+        class="flex items-center gap-2 py-2"
       >
         <span
           class="flex-1 font-medium"
@@ -123,6 +130,14 @@ const { mutate: deleteTodo } = useMutation({
         <USwitch
           :model-value="Boolean(todo.completed)"
           @update:model-value="toggleTodo(todo)"
+        />
+
+        <UButton
+          color="primary"
+          variant="soft"
+          size="xs"
+          icon="i-lucide-share-2"
+          @click="shareTodo(todo)"
         />
 
         <UButton
@@ -136,3 +151,4 @@ const { mutate: deleteTodo } = useMutation({
     </ul>
   </form>
 </template>
+
