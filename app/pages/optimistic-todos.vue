@@ -26,13 +26,13 @@ const { mutate: addTodo } = useMutation({
   },
 
   onMutate(title) {
-    // let the user enter new todos right away!
+
     newTodo.value = ''
     const oldTodos = queryCache.getQueryData(todosQuery.key) || []
     const newTodoItem = {
       title,
       completed: 0,
-      // a negative id to differentiate them from the server ones
+    
       id: -Date.now(),
       createdAt: new Date(),
       userId: user.value!.id
@@ -181,7 +181,7 @@ const { mutate: deleteTodo } = useMutation({
         v-model="newTodo"
         name="todo"
         class="flex-1"
-        placeholder="Make a Nuxt demo"
+        placeholder="create notes in realtime..."
         autocomplete="off"
         autofocus
         :ui="{ wrapper: 'flex-1' }"
