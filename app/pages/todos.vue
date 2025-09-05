@@ -95,7 +95,7 @@ const { mutate: deleteTodo } = useMutation({
         name="todo"
         :disabled="loading"
         class="flex-1"
-        placeholder="Make a Nuxt demo"
+        placeholder="create a new note..."
         autocomplete="off"
         autofocus
         :ui="{ wrapper: 'flex-1' }"
