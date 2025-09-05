@@ -16,7 +16,7 @@ export default defineNuxtConfig({
   hub: {
     database: true
   },
-  // Development config
+
   eslint: {
     config: {
       stylistic: {
