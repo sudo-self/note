@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import { useRoute, useRouter } from 'vue-router'
+import { ref, onMounted, nextTick } from 'vue'
+import { useRoute } from 'vue-router'
 import { nanoid } from 'nanoid'
-import { todosQuery } from '~/queries/todos'
-
-// Nuxt 4 middleware
-definePageMeta({ middleware: 'auth' })
 
 const route = useRoute()
-const router = useRouter()
 const slug = route.params.slug as string
+
+// Middleware remains, server-safe
+definePageMeta({ middleware: 'auth' })
 
 const newTodo = ref('')
 const newTodoInput = useTemplateRef('new-todo')
@@ -16,19 +15,17 @@ const todos = ref<Todo[]>([])
 const loading = ref(false)
 const queryCache = useQueryCache()
 
-// Temporary toast stub for Nuxt 4
-// Replace with a real plugin like vue-toastification later
+// Temporary toast stub (Nuxt 4)
 const toast = {
-  add: (options: { title: string; color?: string }) =>
-    console.log('Toast:', options)
+  add: (options: { title: string; color?: string }) => console.log('Toast:', options)
 }
 
-// Fetch todos for the current slug
+// Fetch todos client-side
 const fetchTodos = async () => {
+  loading.value = true
   try {
-    loading.value = true
     const allTodos: Todo[] = await $fetch('/api/todos')
-    todos.value = allTodos.filter(todo => todo.slug === slug)
+    todos.value = allTodos.filter(t => t.slug === slug)
     if (!todos.value.length) {
       toast.add({ title: 'Oops, note not found.', color: 'red' })
     }
@@ -40,9 +37,10 @@ const fetchTodos = async () => {
   }
 }
 
+// Only fetch on client
 onMounted(fetchTodos)
 
-// Add a new todo
+// Add todo
 const { mutate: addTodo } = useMutation({
   mutation: async (title: string) => {
     if (!title.trim()) throw new Error('Title is required')
@@ -78,26 +76,28 @@ const { mutate: toggleTodo } = useMutation({
 
 // Delete todo
 const { mutate: deleteTodo } = useMutation({
-  mutation: async (todo: Todo) => $fetch(`/api/todos/${todo.id}`, { method: 'DELETE' }),
+  mutation: async (todo: Todo) =>
+    $fetch(`/api/todos/${todo.id}`, { method: 'DELETE' }),
   async onSuccess() {
     await fetchTodos()
   }
 })
 
-// Share todo
+// Share todo (client-only)
 const shareTodo = async (todo: Todo) => {
-  const shareUrl = `${window.location.origin}/${todo.slug}`
-  if (navigator.canShare && navigator.canShare({ url: shareUrl })) {
-    try {
-      await navigator.share({ title: 'Check out this note', text: todo.title, url: shareUrl })
-      toast.add({ title: 'Shared successfully!' })
-    } catch (err) {
-      console.error(err)
-      toast.add({ title: 'Share cancelled', color: 'red' })
+  if (process.client) {
+    const shareUrl = `${window.location.origin}/${todo.slug}`
+    if (navigator.canShare && navigator.canShare({ url: shareUrl })) {
+      try {
+        await navigator.share({ title: 'Check out this note', text: todo.title, url: shareUrl })
+        toast.add({ title: 'Shared successfully!' })
+      } catch {
+        toast.add({ title: 'Share cancelled', color: 'red' })
+      }
+    } else {
+      await navigator.clipboard.writeText(shareUrl)
+      toast.add({ title: 'Link copied to clipboard!' })
     }
-  } else {
-    await navigator.clipboard.writeText(shareUrl)
-    toast.add({ title: 'Link copied to clipboard!' })
   }
 }
 </script>
@@ -159,6 +159,7 @@ const shareTodo = async (todo: Todo) => {
     </ul>
   </form>
 </template>
+
 
 
 
