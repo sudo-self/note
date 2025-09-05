@@ -1,5 +1,3 @@
-// server/api/todos/[slug].get.ts
-
 import { eq } from 'drizzle-orm'
 
 export default eventHandler(async (event) => {
@@ -21,3 +19,4 @@ export default eventHandler(async (event) => {
 
   return todo
 })
+
