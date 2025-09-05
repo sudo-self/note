@@ -63,7 +63,7 @@ const items = [
         <template #header>
           <h3 class="text-lg font-semibold leading-6">
             <NuxtLink to="https://note.jessejesse.com">
-              note.JesseJesse.com
+              powered by JesseJesse.com
             </NuxtLink>
           </h3>
           <UButton
@@ -124,7 +124,7 @@ const items = [
     <img
       src="https://github.com/sudo-self/note/actions/workflows/nuxthub.yml/badge.svg"
       alt="Deploy to NuxtHub"
-      class="h-4 inline"
+      class="h-5 inline"
     />
   </NuxtLink>
 </footer>
