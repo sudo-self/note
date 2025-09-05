@@ -1,7 +1,7 @@
 import { useValidatedBody, z } from 'h3-zod'
 import { nanoid } from 'nanoid'
-import { useDB, tables } from '../db'  
-import { requireUserSession } from '../utils/auth' 
+import { useDB, tables } from '../db'
+import { requireUserSession } from '../utils/auth'
 
 export default eventHandler(async (event) => {
   try {
@@ -32,5 +32,6 @@ export default eventHandler(async (event) => {
     throw createError({ statusCode: 500, message: err.message || 'Server Error' })
   }
 })
+
 
 
