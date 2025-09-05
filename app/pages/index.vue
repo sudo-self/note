@@ -4,23 +4,23 @@
       Welcome to Note.
     </p>
     <p>
-      A <a
+      A secure notes app built with <a
         href="https://nuxt.com"
         target="_blank"
         class="text-(--ui-primary)"
         rel="noopener"
-      >Nuxt</a> App Hosted on <a
+      >Nuxt</a> hosted on <a
         href="https://pages.cloudflare.com"
         target="_blank"
         rel="noopener"
         class="text-(--ui-primary)"
-      >Cloudflare Pages</a> server-side rendering on the edge and using <NuxtLink
+      >Cloudflare Pages</a> SSR on the edge featuring serverless SQLite with<NuxtLink
         href="https://developers.cloudflare.com/d1/"
         target="_blank"
         rel="noopener"
         class="text-(--ui-primary)"
       >
-        Cloudflare D1 database
+        Cloudflare D1.
       </NuxtLink>.
     </p>
     <p>
