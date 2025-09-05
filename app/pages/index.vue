@@ -24,7 +24,7 @@
       </NuxtLink>
     </p>
     <p>
-      Create & Update Notes with Confidence.
+      Create, Update, & Delete notes with Confidence.
     </p>
     <USeparator />
     <p class="text-sm text-(--ui-text-muted) italic">
