@@ -140,16 +140,16 @@ body {
 }
 /* --- Shine effect for h3 --- */
 .site-title {
-  font-size: 1.125rem; /* ~text-lg */
-  font-weight: 600;    /* ~font-semibold */
-  line-height: 1.5;    /* ~leading-6 */
+  font-size: 1.125rem;
+  font-weight: 600; 
+  line-height: 1.5;   
   position: relative;
   display: inline-block;
-  overflow: hidden; /* prevents shine overflow */
+  overflow: hidden;
 }
 
 .bling-link {
-  color: #00dc82; /* Nuxt green */
+  color: #00dc82;
   position: relative;
   display: inline-block;
   text-decoration: none;
@@ -162,8 +162,8 @@ body {
 .shine {
   position: absolute;
   top: 0;
-  left: -50%;   /* start half off left */
-  width: 50%;   /* shine only half as wide as text */
+  left: -50%;  
+  width: 50%;  
   height: 100%;
   background: linear-gradient(
     90deg,
@@ -189,7 +189,7 @@ body {
     opacity: 1;
   }
   100% {
-    transform: translateX(300%); /* moves fully past the text */
+    transform: translateX(300%);
     opacity: 0;
   }
 }
