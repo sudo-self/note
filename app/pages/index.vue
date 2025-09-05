@@ -14,7 +14,7 @@
         target="_blank"
         rel="noopener"
         class="text-(--ui-primary)"
-      >Cloudflare Pages.</a>&nbsp;App includes SSR from the edge and a serverless<NuxtLink
+      >Cloudflare Pages.</a>&nbsp;App includes SSR from the edge and a serverless SQLite<NuxtLink
         href="https://developers.cloudflare.com/d1/"
         target="_blank"
         rel="noopener"
@@ -24,7 +24,7 @@
       </NuxtLink>
     </p>
     <p>
-      Create, Update, Delete, & Share Notes.
+      Create, Update, Delete, & Share.
     </p>
     <USeparator />
     <p class="text-sm text-(--ui-text-muted) italic">
