@@ -1,5 +1,6 @@
 import { eq } from 'drizzle-orm'
-import { useDB, tables } from '~/server/db'
+import { useDB, tables } from '../db' 
+import { requireUserSession } from '../utils/auth' 
 
 export default eventHandler(async (event) => {
   try {
@@ -24,5 +25,6 @@ export default eventHandler(async (event) => {
     throw createError({ statusCode: 500, message: err.message || 'Server Error' })
   }
 })
+
 
 
