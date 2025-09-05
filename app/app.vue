@@ -63,7 +63,7 @@ const items = [
         <template #header>
           <h3 class="site-title">
             <NuxtLink to="https://note.jessejesse.com" class="bling-link">
-              JesseJesse.com
+              note.JesseJesse.com
               <span class="shine"></span>
             </NuxtLink>
           </h3>
@@ -138,7 +138,6 @@ const items = [
 body {
   @apply font-sans text-neutral-950 bg-neutral-50 dark:bg-neutral-950 dark:text-neutral-50;
 }
-
 /* --- Shine effect for h3 --- */
 .site-title {
   font-size: 1.125rem; /* ~text-lg */
@@ -146,6 +145,7 @@ body {
   line-height: 1.5;    /* ~leading-6 */
   position: relative;
   display: inline-block;
+  overflow: hidden; /* prevents shine overflow */
 }
 
 .bling-link {
@@ -161,7 +161,10 @@ body {
 
 .shine {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: -50%;   /* start half off left */
+  width: 50%;   /* shine only half as wide as text */
+  height: 100%;
   background: linear-gradient(
     90deg,
     transparent,
@@ -169,24 +172,25 @@ body {
     transparent
   );
   opacity: 0;
-  transform: translateX(-100%);
+  pointer-events: none;
 }
 
 .bling-link:hover .shine {
-  animation: shine 1.2s ease-in-out forwards;
+  animation: shine 1.2s ease-in-out;
   opacity: 1;
 }
 
 @keyframes shine {
   0% {
-    transform: translateX(-100%);
+    transform: translateX(0%);
+    opacity: 0;
   }
-  50% {
-    transform: translateX(100%);
+  30% {
+    opacity: 1;
   }
   100% {
-    transform: translateX(100%);
+    transform: translateX(300%); /* moves fully past the text */
+    opacity: 0;
   }
 }
 </style>
-
