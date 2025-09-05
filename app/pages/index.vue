@@ -24,11 +24,11 @@
       </NuxtLink>.
     </p>
     <p>
-      Login, create or update your notes.
+      Login, create & update secure notes.
     </p>
     <USeparator />
     <p class="text-sm text-(--ui-text-muted) italic">
-      Personal information is not stored in database only the notes created with your GitHub ID.
+      personal information is not stored in the database, only the notes created with your GitHub ID.
     </p>
   </div>
 </template>
