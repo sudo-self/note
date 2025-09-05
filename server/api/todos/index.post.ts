@@ -1,12 +1,14 @@
 import { useValidatedBody, z } from 'h3-zod'
 import { nanoid } from 'nanoid'
-import { useDB, tables } from '~/server/db'
+import { useDB, tables } from '../db'  
+import { requireUserSession } from '../utils/auth' 
 
 export default eventHandler(async (event) => {
   try {
     const { title } = await useValidatedBody(event, {
       title: z.string().min(1).max(100)
     })
+
     const { user } = await requireUserSession(event)
     if (!user) throw createError({ statusCode: 401, message: 'Unauthorized' })
 
